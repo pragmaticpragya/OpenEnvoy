@@ -1,0 +1,22 @@
+/Users/ritigupta/PycharmProjects/CodeCounter/venv/bin/python /Users/ritigupta/PycharmProjects/CodeCounter/code_counter.py --file=files/test_python_code.py --type=file --language=python
+FileName files/test_python_code.py
+Total: 10
+Blank: 2
+Comments: 2
+Code: 6
+
+ /Users/ritigupta/PycharmProjects/CodeCounter/venv/bin/python /Users/ritigupta/PycharmProjects/CodeCounter/code_counter.py --file=files/test_java_code.java --type=file
+FileName files/test_java_code.java
+Total: 19
+Blank: 4
+Comments: 9
+Code: 6
+
+ /Users/ritigupta/PycharmProjects/CodeCounter/venv/bin/python /Users/ritigupta/PycharmProjects/CodeCounter/code_counter.py --type=directory
+files/test_java_code.java: Blank: 4, Comments: 9, Code: 6, Total: 19
+files/test_python_code.py: Blank: 2, Comments: 2, Code: 6, Total: 10
+Directory files
+Total: 29
+Blank: 6
+Comments: 11
+Code: 12
