@@ -33,6 +33,7 @@ class FileCounter:
 
                 if line.startswith("import") or line.startswith("from"):
                     self.imports += 1
+                    
             return [self.blank_lines, self.comment_lines, self.code_lines, self.imports]
 
 

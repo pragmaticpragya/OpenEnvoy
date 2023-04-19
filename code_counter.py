@@ -3,6 +3,10 @@ from counter.directory_counter import DirectoryCounter
 from counter.file_counter import FileCounter
 from language.syntax_rules import Syntax
 
+## main function which takes input arguments
+##  --file : file name
+##  --type : file or directory
+##  --directory : name of file
 
 def main():
     parser = argparse.ArgumentParser(description='Count lines of code in a file')
@@ -13,6 +17,7 @@ def main():
                         help='parse file or directory')
     parser.add_argument('--directory', default='files')
     args = parser.parse_args()
+
     if args.type == "directory":
         directory_name = "files"
         counter = DirectoryCounter(directory_name)

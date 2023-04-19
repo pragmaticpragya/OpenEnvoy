@@ -23,6 +23,7 @@ class DirectoryCounter:
                 language = Syntax(Language.getLanguageForFileByExtension(filepath))
                 counter = FileCounter(filepath, language)
                 blank_lines, comment_lines, code_lines, imports = counter.count_lines_in_file()
+
                 self.directory_blank_lines += blank_lines
                 self.directory_comment_lines += comment_lines
                 self.directory_code_lines += code_lines
