@@ -1,11 +1,16 @@
 from config import Config
+from exceptions.custom_exception import CustomException
+from exceptions.validations import Validations
 from language.__init__ import Language
 
 
 class Syntax(Language):
     def __init__(self, language):
-        for key, value in Config().language_comments_map.items():
-            if language == key:
-                super().__init__(key, value["comments"])
-            else:
-                ValueError("Language not found")
+
+        try:
+            syntax = Config().language_comments_map[language]
+            super().__init__(language, syntax["comments"], syntax["import_vars"])
+            Validations.check_syntax(language)
+        except CustomException as e:
+            print("Caught a custom exception:", e.message)
+            return

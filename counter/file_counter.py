@@ -1,8 +1,11 @@
+from config import Config
+
 
 class FileCounter:
-    def __init__(self, file_path, language):
+    def __init__(self, file_path, syntax, language_name):
         self.file_path = file_path
-        self.language = language
+        self.syntax = syntax
+        self.language_name = language_name
         self.total_lines = 0
         self.blank_lines = 0
         self.comment_lines = 0
@@ -26,13 +29,13 @@ class FileCounter:
                     in_multiline_comment = False
                 elif in_multiline_comment:
                     self.comment_lines += 1
-                elif self.language.is_comment(line):
+                elif self.syntax.is_comment(line):
                     self.comment_lines += 1
                 else:
                     self.code_lines += 1
-
-                if line.startswith("import") or line.startswith("from"):
-                    self.imports += 1
+                for x in Config().language_comments_map[self.language_name]["import_vars"]:
+                    if line.startswith(x):
+                        self.imports += 1
 
             return [self.blank_lines, self.comment_lines, self.code_lines, self.imports]
 

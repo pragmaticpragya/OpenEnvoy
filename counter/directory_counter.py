@@ -20,8 +20,9 @@ class DirectoryCounter:
         for subdir, _, files in os.walk(self.directory):
             for file in files:
                 filepath = os.path.join(subdir, file)
-                language = Syntax(Language.getLanguageForFileByExtension(filepath))
-                counter = FileCounter(filepath, language)
+                language_name = Language.getLanguageForFileByExtension(filepath)
+                syntax = Syntax(language_name)
+                counter = FileCounter(filepath, syntax, language_name)
                 blank_lines, comment_lines, code_lines, imports = counter.count_lines_in_file()
 
                 self.directory_blank_lines += blank_lines

@@ -1,47 +1,58 @@
 import argparse
+import os
 from counter.directory_counter import DirectoryCounter
 from counter.file_counter import FileCounter
+from exceptions.custom_exception import CustomException
+from exceptions.validations import Validations
+from language import Language
 from language.syntax_rules import Syntax
 
-## main function which takes input arguments
-##  --file : file name
-##  --type : file or directory
-##  --directory : name of file
+##  main function which takes input arguments
+##  --filepath : file/directory name
 
 def main():
     parser = argparse.ArgumentParser(description='Count lines of code in a file')
-    parser.add_argument('--file', help='File to count lines of code')
-    parser.add_argument('--language', choices=['java', 'python'], default='java',
-                        help='Programming language used in the file')
-    parser.add_argument('--type', choices=['file', 'directory'], default='file',
-                        help='parse file or directory')
-    parser.add_argument('--directory', default='files')
+    parser.add_argument('--filepath', help='File to count lines of code')
     args = parser.parse_args()
+    filepath = args.filepath
 
-    if args.type == "directory":
-        directory_name = "files"
-        counter = DirectoryCounter(directory_name)
+    # validations
+    try:
+        Validations.check_file_path(filepath)
+    except CustomException as e:
+        print("Caught a custom exception:", e.message)
+        return
+
+    if os.path.isdir(filepath):
+        counter = DirectoryCounter(filepath)
         counter.count_lines_in_directory()
 
-        print(f"Directory {directory_name}")
+        print(f"Directory {filepath}")
         print('Total: {}'.format(counter.directory_total_lines))
         print('Blank: {}'.format(counter.directory_blank_lines))
         print('Comments: {}'.format(counter.directory_comment_lines))
         print('Code: {}'.format(counter.directory_code_lines))
         print('Imports: {}'.format(counter.directory_imports))
 
-    else:
-        language = Syntax(args.language)
-        counter = FileCounter(args.file, language)
+    elif os.path.isfile(filepath):
+        language_name = Language.getLanguageForFileByExtension(filepath)
+        syntax = Syntax(language_name)
+        counter = FileCounter(filepath, syntax, language_name)
         counter.count_lines_in_file()
 
-        print(f"FileName {args.file}")
+        print(f"FileName {filepath}")
         print('Total: {}'.format(counter.total_lines))
         print('Blank: {}'.format(counter.blank_lines))
         print('Comments: {}'.format(counter.comment_lines))
         print('Code: {}'.format(counter.code_lines))
         print('Imports: {}'.format(counter.imports))
 
+    else:
+        try:
+            Validations.not_file_or_directory(filepath)
+        except CustomException as e:
+            print("Caught a custom exception:", e.message)
+            return
 
 
 if __name__ == '__main__':
