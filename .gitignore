@@ -1,3 +1,6 @@
 .idea/*
 venv/*
 __pycache__/*
+counter/__pycache__/*
+exceptions/__pycache__/*
+language/__pycache__/*
