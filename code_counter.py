@@ -28,14 +28,14 @@ def main():
         counter.count_lines_in_directory()
 
         print(f"Directory {filepath}")
-        print('Total: {}'.format(counter.directory_total_lines))
-        print('Blank: {}'.format(counter.directory_blank_lines))
-        print('Comments: {}'.format(counter.directory_comment_lines))
-        print('Code: {}'.format(counter.directory_code_lines))
-        print('Imports: {}'.format(counter.directory_imports))
+        print('Total: {}'.format(counter.total_lines))
+        print('Blank: {}'.format(counter.blank_lines))
+        print('Comments: {}'.format(counter.comment_lines))
+        print('Code: {}'.format(counter.code_lines))
+        print('Imports: {}'.format(counter.imports))
 
     elif os.path.isfile(filepath):
-        language_name = Language.getLanguageForFileByExtension(filepath)
+        language_name = Language.get_language_for_file_by_extension(filepath)
         syntax = Syntax(language_name)
         counter = FileCounter(filepath, syntax, language_name)
         counter.count_lines_in_file()

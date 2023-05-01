@@ -13,26 +13,26 @@ class PythonCodeCounterTest(unittest.TestCase):
        self.language = Syntax("python")
 
    def test_total_lines(self):
-       counter = FileCounter(self.testfile, self.language)
+       counter = FileCounter(self.testfile, self.language, "python")
        counter.count_lines_in_file()
        assert counter.total_lines == 10
 
    def test_blank_lines(self):
-       counter = FileCounter(self.testfile, self.language)
+       counter = FileCounter(self.testfile, self.language, "python")
        counter.count_lines_in_file()
        assert counter.blank_lines == 2
 
    def test_code_lines(self):
-       counter = FileCounter(self.testfile, self.language)
+       counter = FileCounter(self.testfile, self.language, "python")
        counter.count_lines_in_file()
        assert counter.code_lines == 6
 
    def test_comment_lines(self):
-       counter = FileCounter(self.testfile, self.language)
+       counter = FileCounter(self.testfile, self.language, "python")
        counter.count_lines_in_file()
        assert counter.comment_lines == 2
 
    def test_import_lines(self):
-       counter = FileCounter(self.testfile, self.language)
+       counter = FileCounter(self.testfile, self.language, "python")
        counter.count_lines_in_file()
        assert counter.imports == 0

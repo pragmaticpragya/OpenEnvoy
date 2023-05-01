@@ -14,7 +14,7 @@ class Language:
         return any(line.strip().startswith(prefix) for prefix in self.comment_prefixes)
 
     @staticmethod
-    def getLanguageForFileByExtension(filepath):
+    def get_language_for_file_by_extension(filepath):
         file_extension = os.path.splitext(filepath)[1]
         for key, value in Config().language_comments_map.items():
             if file_extension == value["extension"]:
