@@ -2,7 +2,7 @@ import argparse
 import os
 from counter.directory_counter import DirectoryCounter
 from counter.file_counter import FileCounter
-from exceptions.custom_exception import CustomException
+from exceptions import CustomException
 from exceptions.validations import Validations
 from language import Language
 from language.syntax_rules import Syntax

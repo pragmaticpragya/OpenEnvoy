@@ -1,6 +1,6 @@
 import os
 from config import Config
-from exceptions.custom_exception import CustomException
+from exceptions import CustomException
 from exceptions.validations import Validations
 
 

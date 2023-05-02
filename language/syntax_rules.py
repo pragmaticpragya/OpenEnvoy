@@ -1,5 +1,5 @@
 from config import Config
-from exceptions.custom_exception import CustomException
+from exceptions import CustomException
 from exceptions.validations import Validations
 from language.__init__ import Language
 
