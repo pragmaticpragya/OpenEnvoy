@@ -1,4 +1,4 @@
-# OpenEnvoy LINE CODE COUNTER
+# LINE CODE COUNTER
 
 This Python script counts the lines of code in a given directory (and its subdirectories) that match certain file extensions.
 
